@@ -54,6 +54,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.txtProvincia.Name = "txtProvincia";
             this.txtProvincia.Size = new System.Drawing.Size(272, 20);
             this.txtProvincia.TabIndex = 1;
+            this.txtProvincia.TextChanged += new System.EventHandler(this.txtProvincia_TextChanged);
             // 
             // BtnCancelar
             // 

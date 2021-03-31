@@ -22,10 +22,10 @@ namespace SistemadeCorreoPrivado.Windows
                 _lista = _servicio.GetZonas();
                 MostrarDatosEnGrilla();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-
-                throw;
+                Console.WriteLine(exception);
+                
             }
         }
 

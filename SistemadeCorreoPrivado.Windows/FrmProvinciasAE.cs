@@ -69,5 +69,10 @@ namespace SistemadeCorreoPrivado.Windows
 
             return valido;
         }
+
+        private void txtProvincia_TextChanged(object sender, EventArgs e)
+        {
+            txtProvincia.SelectAll();
+        }
     }
 }

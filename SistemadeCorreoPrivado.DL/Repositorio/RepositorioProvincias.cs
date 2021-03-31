@@ -40,7 +40,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
                 reader.Close();
                 return lista;
             }
-            catch (Exception e)
+            catch (Exception exeption)
             {
 
                 throw new Exception("Error al intentar leer las Provincias");

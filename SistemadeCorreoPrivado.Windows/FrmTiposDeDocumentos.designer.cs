@@ -72,22 +72,12 @@ namespace SistemadeCorreoPrivado.Windows
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TsbNuevo,
-            this.TsbBorrar,
-            this.TsbEditar,
-            this.toolStripSeparator1,
-            this.TsbBuscar,
-            this.TsabActualizar,
-            this.toolStripSeparator2,
-            this.TsbImprimir,
-            this.toolStripSeparator3,
-            this.TsbCerrar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 86);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // TsbNuevo
             // 

@@ -28,10 +28,10 @@ namespace SistemadeCorreoPrivado.Windows
                 _lista = _servicio.GetTareas();
                 MostrarDatosEnGrilla();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Console.WriteLine(exception);
 
-                throw;
             }
         }
 

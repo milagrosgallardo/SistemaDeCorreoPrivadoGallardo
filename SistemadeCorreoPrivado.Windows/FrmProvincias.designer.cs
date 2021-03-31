@@ -192,7 +192,6 @@ namespace SistemadeCorreoPrivado.Windows
             this.ControlBox = false;
             this.Controls.Add(this.DgvDatosProvincia);
             this.Controls.Add(this.toolStrip1);
-            this.Enabled = false;
             this.MaximizeBox = false;
             this.Name = "FrmProvincias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

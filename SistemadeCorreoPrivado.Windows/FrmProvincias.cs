@@ -28,10 +28,10 @@ namespace SistemadeCorreoPrivado.Windows
                 _lista = _servicio.GetProvincias();
                 MostrarDatosEnGrilla();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-
-                throw;
+                Console.WriteLine(exception);
+                
             }
         }
 
@@ -79,7 +79,6 @@ namespace SistemadeCorreoPrivado.Windows
                 try
                 {
                     Provincia provincia = frm.GetProvincia();
-                    //Controlar repitencia
 
                     if (!_servicio.Existe(provincia))
                     {
