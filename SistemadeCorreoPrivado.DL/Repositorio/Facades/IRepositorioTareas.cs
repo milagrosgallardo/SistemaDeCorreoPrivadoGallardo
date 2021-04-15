@@ -5,7 +5,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio.Facades
 {
     public interface IRepositorioTareas
     {
-        List<Tarea> GetTarea();
+        List<Tarea> GetTareas();
         Tarea GetTareaPorId(int id);
         void Guardar(Tarea tarea);
         void Borrar(int id);

@@ -10,6 +10,7 @@ namespace SistemadeCorreoPrivado.DL
         public ConexionBd()
         {
             var cadenaDeConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ToString();
+            //instancio la conexion 
             _cnSqlConnection = new SqlConnection(cadenaDeConexion);
         }
         public SqlConnection AbrirConexion()

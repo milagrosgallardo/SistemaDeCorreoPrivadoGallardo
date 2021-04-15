@@ -174,6 +174,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.TsbCerrar.Size = new System.Drawing.Size(68, 83);
             this.TsbCerrar.Text = "Cerrar";
             this.TsbCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbCerrar.Click += new System.EventHandler(this.TsbCerrar_Click);
             // 
             // FrmTareas
             // 

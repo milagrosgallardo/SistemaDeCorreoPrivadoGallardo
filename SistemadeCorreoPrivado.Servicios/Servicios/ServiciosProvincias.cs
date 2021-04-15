@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace SistemadeCorreoPrivado.Servicios.Servicios
 {
     public class ServiciosProvincias : IServiciosProvincias
-    {
+    {   //pido las provincias al repositorio a traves de una conexion
         private IRepositorioProvincias _repositorio;
         private ConexionBd _conexionBd;
         public ServiciosProvincias()
@@ -18,12 +18,34 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
         }
         public void Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                _repositorio.Borrar(id);
+                _conexionBd.CerrarConexion();
+               
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public bool Existe(Provincia provincia)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                var existe = _repositorio.Existe(provincia);
+                _conexionBd.CerrarConexion();
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<Provincia> GetProvincias()
@@ -36,10 +58,10 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
                 _conexionBd.CerrarConexion();
                 return lista;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                throw new Exception(e.Message);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -50,7 +72,21 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
 
         public void Guardar(Provincia provincia)
         {
-            throw new NotImplementedException();
+            try
+            {// hago la conexion 
+                _conexionBd = new ConexionBd();
+                // creo el repositorio
+                _repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                //guarda la provincia
+                _repositorio.Guardar(provincia);
+                //cierro la conexion
+                _conexionBd.CerrarConexion();
+       
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

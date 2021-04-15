@@ -51,9 +51,10 @@ namespace SistemadeCorreoPrivado.Windows
             // txtProvincia
             // 
             this.txtProvincia.Location = new System.Drawing.Point(127, 33);
+            this.txtProvincia.MaxLength = 100;
             this.txtProvincia.Name = "txtProvincia";
             this.txtProvincia.Size = new System.Drawing.Size(272, 20);
-            this.txtProvincia.TabIndex = 1;
+            this.txtProvincia.TabIndex = 0;
             this.txtProvincia.TextChanged += new System.EventHandler(this.txtProvincia_TextChanged);
             // 
             // BtnCancelar
@@ -62,7 +63,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.BtnCancelar.Location = new System.Drawing.Point(243, 82);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(143, 82);
-            this.BtnCancelar.TabIndex = 3;
+            this.BtnCancelar.TabIndex = 2;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnCancelar.UseVisualStyleBackColor = true;
@@ -74,7 +75,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.BtnGuardar.Location = new System.Drawing.Point(56, 82);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(143, 82);
-            this.BtnGuardar.TabIndex = 2;
+            this.BtnGuardar.TabIndex = 1;
             this.BtnGuardar.Text = "Guardar";
             this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnGuardar.UseVisualStyleBackColor = true;

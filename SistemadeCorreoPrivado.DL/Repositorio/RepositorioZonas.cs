@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 namespace SistemadeCorreoPrivado.DL.Repositorio
 {
     public class RepositorioZonas : IRepositorioZonas
-    {
+    {   //conexion de datos
         private readonly SqlConnection _conexion;
 
         public RepositorioZonas(SqlConnection conexion)
@@ -32,21 +32,24 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
 
         public List<Zona> GetZonas()
         {
-            List<Zona> lista = new List<Zona>();
+            List<Zona> lista = new List<Zona>();//ver
             try
-            {
+            {    // cadena a usar 
                 string cadenaComando = "select ZonaId,NombreZona  from Zonas";
+                //comando a ejecutar
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 SqlDataReader reader = comando.ExecuteReader();
+
+                //mientras tenga que leer
                 while (reader.Read())
-                {
+                {               //recibe el registro que leo y devuelve una zona
                     Zona zona = ConstruirZona(reader);
                     lista.Add(zona);
                 }
                 reader.Close();
                 return lista;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
                 throw new Exception("Error al intentar leer las Zonas");

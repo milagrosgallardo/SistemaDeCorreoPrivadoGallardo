@@ -41,7 +41,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
                 reader.Close();
                 return lista;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
                 throw new Exception("Error al intentar leer las Modalidades");

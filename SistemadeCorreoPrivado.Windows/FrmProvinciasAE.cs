@@ -50,7 +50,7 @@ namespace SistemadeCorreoPrivado.Windows
             }
         }
         protected override void OnLoad(EventArgs e)
-        {
+        { // cuando se carga el formulario se fija el estado de la variable 
             base.OnLoad(e);
             if (provincia != null)
             {

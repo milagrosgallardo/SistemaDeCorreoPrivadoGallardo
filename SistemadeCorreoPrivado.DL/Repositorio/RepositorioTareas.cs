@@ -25,7 +25,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
             throw new NotImplementedException();
         }
 
-        public List<Tarea> GetTarea()
+        public List<Tarea> GetTareas()
         {
             List<Tarea> lista = new List<Tarea>();
             try
@@ -41,7 +41,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
                 reader.Close();
                 return lista;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
                 throw new Exception("Error al intentar leer las tareas");

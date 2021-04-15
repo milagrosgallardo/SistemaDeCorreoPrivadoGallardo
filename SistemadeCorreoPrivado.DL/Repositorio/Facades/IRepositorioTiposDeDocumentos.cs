@@ -5,7 +5,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio.Facades
 {
     public interface IRepositorioTiposDeDocumentos
     {
-        List<TiposDeDocumento> GetTiposDeDocumento();
+        List<TiposDeDocumento> GetTiposDeDocumentos();
         TiposDeDocumento GetTiposDeDocumentoPorId(int id);
         void Guardar(TiposDeDocumento tiposDeDocumento);
         void Borrar(int id);

@@ -25,7 +25,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
             throw new NotImplementedException();
         }
 
-        public List<TiposDeDocumento> GetTiposDeDocumento()
+        public List<TiposDeDocumento> GetTiposDeDocumentos()
         {
             List<TiposDeDocumento> lista = new List<TiposDeDocumento>();
             try
@@ -41,7 +41,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
                 reader.Close();
                 return lista;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
                 throw new Exception("Error al intentar leer los tipos de documentos");

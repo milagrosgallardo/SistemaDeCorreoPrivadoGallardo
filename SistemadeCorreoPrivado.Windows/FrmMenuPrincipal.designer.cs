@@ -59,7 +59,7 @@
             this.lblTitulo.Location = new System.Drawing.Point(32, 41);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(212, 18);
-            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "Sistema de Correo Privado";
             // 
             // btnCerrar
@@ -68,7 +68,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(952, 446);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(126, 100);
-            this.btnCerrar.TabIndex = 2;
+            this.btnCerrar.TabIndex = 0;
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 

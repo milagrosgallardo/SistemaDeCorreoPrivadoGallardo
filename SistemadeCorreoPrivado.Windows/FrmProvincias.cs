@@ -24,22 +24,22 @@ namespace SistemadeCorreoPrivado.Windows
         {
             _servicio = new ServiciosProvincias();
             try
-            {
+            { //este objeto pide la lista de provincias
                 _lista = _servicio.GetProvincias();
                 MostrarDatosEnGrilla();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(exception);
+                Console.WriteLine(ex);
                 
             }
         }
 
         private void MostrarDatosEnGrilla()
-        {
+        { // limpio la grilla por las dudas
             DgvDatosProvincia.Rows.Clear();
             foreach (var provincia in _lista)
-            {
+            { // por cada provincia de la lista creo la fila
                 DataGridViewRow r = ConstruirFila();
                 SetearFila(r,provincia);
                 AgregarFila(r);
@@ -96,6 +96,83 @@ namespace SistemadeCorreoPrivado.Windows
                 catch (Exception exception)
                 {
                     MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void TsbEditar_Click(object sender, EventArgs e)
+        { // tengo que tener una provincia seleccionada 
+            if (DgvDatosProvincia.SelectedRows.Count > 0)
+            {   // me fijo que fila tome
+                DataGridViewRow r = DgvDatosProvincia.SelectedRows[0];
+                Provincia provincia = (Provincia)r.Tag; // saco la provincia lo casteo 
+
+                 Provincia provinciaAuxiliar = (Provincia)provincia.Clone();
+                /* PaisEditDto paisEditDto = new PaisEditDto
+                 {
+                     PaisId = pais.PaisId,
+                     NombrePais = pais.NombrePais
+                 };*/
+                FrmProvinciasAE frm = new FrmProvinciasAE();
+                frm.Text = "Editar Provincia";
+                //se lo paso al formulario
+                frm.SetProvincia(provincia);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    try
+                    {
+                        provincia = frm.GetProvincia();
+
+                        if (!_servicio.Existe(provincia))
+                        {
+                            _servicio.Guardar(provincia);
+
+                            provincia.NombreProvincia = provincia.NombreProvincia;
+                            SetearFila(r, provincia);
+                            MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                          SetearFila(r, provinciaAuxiliar);
+                            MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                       SetearFila(r, provinciaAuxiliar);
+
+                        MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void TsbBorrar_Click(object sender, EventArgs e)
+        {
+            if (DgvDatosProvincia.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = DgvDatosProvincia.SelectedRows[0];
+                Provincia provincia = (Provincia)r.Tag;
+
+                DialogResult dr = MessageBox.Show($@"¿Desea dar de baja el registro seleccionado: {provincia.NombreProvincia}?",
+                    @"Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (dr == DialogResult.Yes)
+                {
+                    //Verificar que no esta relacionado
+                    try
+                    {
+                        _servicio.Borrar(provincia.ProvinciaId);
+                        DgvDatosProvincia.Rows.Remove(r);
+                        MessageBox.Show(@"Registro Borrado", @"Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

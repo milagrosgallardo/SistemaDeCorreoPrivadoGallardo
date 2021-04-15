@@ -32,14 +32,14 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
             {
                 _conexionBd = new ConexionBd();
                 _repositorio = new RepositorioTareas(_conexionBd.AbrirConexion());
-                var lista = _repositorio.GetTarea();
+                var lista = _repositorio.GetTareas();
                 _conexionBd.CerrarConexion();
                 return lista;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                throw new Exception(e.Message);
+                throw new Exception(ex.Message);
             }
         }
 
