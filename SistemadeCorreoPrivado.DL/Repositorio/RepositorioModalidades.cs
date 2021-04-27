@@ -17,12 +17,43 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
 
         public void Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string cadenaComando = "DELETE FROM Modalidades WHERE ModalidadId=@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@id", id);
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("REFERENCE"))
+                {
+                    throw new Exception("Registro con datos asociados... Baja denegada");
+                }
+                throw new Exception(e.Message);
+            }
         }
 
         public bool Existe(Modalidad modalidad)
         {
-            throw new NotImplementedException();
+            if (modalidad.ModalidadId == 0)
+            {
+                string cadenaComando = "select ModalidadId,NombreModalidad from Modalidades where NombreModalidad=@nom";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@nom", modalidad.NombreModalidad);
+                SqlDataReader reader = comando.ExecuteReader();
+                return reader.HasRows;
+            }
+            else
+            {
+                string cadenaComando = "select ModalidadId,NombreModalidad from Modalidades where NombreModalidad=@nom and ModalidadId<>@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@nom", modalidad.NombreModalidad);
+                comando.Parameters.AddWithValue("@id", modalidad.ModalidadId);
+                SqlDataReader reader = comando.ExecuteReader();
+                return reader.HasRows;
+            }
         }
 
         public List<Modalidad> GetModalidades()
@@ -41,7 +72,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
                 reader.Close();
                 return lista;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw new Exception("Error al intentar leer las Modalidades");
@@ -64,7 +95,47 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
 
         public void Guardar(Modalidad modalidad)
         {
-            throw new NotImplementedException();
+            if (modalidad.ModalidadId == 0)
+            {
+
+                try
+                {
+                    string cadenaComando = "insert into Modalidades values(@nombre)";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@nombre", modalidad.NombreModalidad);
+
+                    comando.ExecuteNonQuery();
+                    cadenaComando = "select @@IDENTITY";
+                    comando = new SqlCommand(cadenaComando, _conexion);
+                    modalidad.ModalidadId = (int)(decimal)comando.ExecuteScalar();
+
+
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Erro al intentar guardar un registro");
+                }
+
+            }
+            else
+            {
+
+                try
+                {
+                    string cadenaComando = "UPDATE Modalidades SET NombreModalidad=@nom WHERE ModalidadId =@id";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@nom", modalidad.NombreModalidad);
+                    comando.Parameters.AddWithValue("@id", modalidad.ModalidadId);
+                    comando.ExecuteNonQuery();
+
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("Erro al intentar Modificar un registro");
+                }
+
+            }
         }
     }
 }

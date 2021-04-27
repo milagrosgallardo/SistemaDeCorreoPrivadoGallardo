@@ -7,8 +7,8 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios.facades
     {
         List<Zona> GetZonas();
         Zona GetZonasPorId(int id);
-        void Guardar(Zona zonas);
+        void Guardar(Zona zona);
         void Borrar(int id);
-        bool Existe(Zona zonas);
+        bool Existe(Zona zona);
     }
 }

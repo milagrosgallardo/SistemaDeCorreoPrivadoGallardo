@@ -17,12 +17,43 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
 
         public void Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string cadenaComando = "DELETE FROM Zonas WHERE ZonaId=@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@id", id);
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("REFERENCE"))
+                {
+                    throw new Exception("Registro con datos asociados... Baja denegada");
+                }
+                throw new Exception(e.Message);
+            }
         }
 
         public bool Existe(Zona zona)
         {
-            throw new NotImplementedException();
+            if (zona.ZonaId == 0)
+            {
+                string cadenaComando = "select ZonaId,NombreZona from Zonas where NombreZona=@nom";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@nom", zona.NombreZona);
+                SqlDataReader reader = comando.ExecuteReader();
+                return reader.HasRows;
+            }
+            else
+            {
+                string cadenaComando = "select ZonaId,NombreZona from Zonas where NombreZona=@nom and ZonaId<>@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@nom", zona.NombreZona);
+                comando.Parameters.AddWithValue("@id", zona.ZonaId);
+                SqlDataReader reader = comando.ExecuteReader();
+                return reader.HasRows;
+            }
         }
 
         public Zona GetZonaPorId(int id)
@@ -49,7 +80,7 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
                 reader.Close();
                 return lista;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw new Exception("Error al intentar leer las Zonas");
@@ -67,7 +98,47 @@ namespace SistemadeCorreoPrivado.DL.Repositorio
 
         public void Guardar(Zona zona)
         {
-            throw new NotImplementedException();
+            if (zona.ZonaId == 0)
+            {
+               
+                try
+                {  
+                    string cadenaComando = "insert into Zonas values(@nombre)";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@nombre", zona.NombreZona);
+
+                    comando.ExecuteNonQuery();
+                    cadenaComando = "select @@IDENTITY";
+                    comando = new SqlCommand(cadenaComando, _conexion);
+                    zona.ZonaId = (int)(decimal)comando.ExecuteScalar();
+                    
+
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Erro al intentar guardar un registro");
+                }
+
+            }
+            else
+            {
+                
+                try
+                {
+                    string cadenaComando = "UPDATE Zonas SET NombreZona=@nombre WHERE ZonaId=@id";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@nombre", zona.NombreZona);
+                    comando.Parameters.AddWithValue("@id", zona.ZonaId);
+                    comando.ExecuteNonQuery();
+
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("Erro al intentar Modificar un registro");
+                }
+
+            }
         }
     }
 }

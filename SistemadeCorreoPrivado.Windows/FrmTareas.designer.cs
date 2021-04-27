@@ -88,7 +88,6 @@ namespace SistemadeCorreoPrivado.Windows
             this.toolStrip1.Size = new System.Drawing.Size(800, 86);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // TsbNuevo
             // 
@@ -99,6 +98,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.TsbNuevo.Size = new System.Drawing.Size(68, 83);
             this.TsbNuevo.Text = "Nuevo";
             this.TsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbNuevo.Click += new System.EventHandler(this.TsbNuevo_Click);
             // 
             // TsbBorrar
             // 
@@ -109,6 +109,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.TsbBorrar.Size = new System.Drawing.Size(68, 83);
             this.TsbBorrar.Text = "Borrar";
             this.TsbBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbBorrar.Click += new System.EventHandler(this.TsbBorrar_Click);
             // 
             // TsbEditar
             // 
@@ -119,6 +120,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.TsbEditar.Size = new System.Drawing.Size(68, 83);
             this.TsbEditar.Text = "Editar";
             this.TsbEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbEditar.Click += new System.EventHandler(this.TsbEditar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -188,6 +190,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tareas";
             this.Load += new System.EventHandler(this.FrmTareas_Load);
+            this.Click += new System.EventHandler(this.FrmTareas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvDatosTareas)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

@@ -18,12 +18,34 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
         }
         public void Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioTareas(_conexionBd.AbrirConexion());
+                _repositorio.Borrar(id);
+                _conexionBd.CerrarConexion();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public bool Existe(Tarea tarea)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioTareas(_conexionBd.AbrirConexion());
+                var existe = _repositorio.Existe(tarea);
+                _conexionBd.CerrarConexion();
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<Tarea> GetTareas()
@@ -50,7 +72,17 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
 
         public void Guardar(Tarea tarea)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioTareas(_conexionBd.AbrirConexion());
+                _repositorio.Guardar(tarea);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

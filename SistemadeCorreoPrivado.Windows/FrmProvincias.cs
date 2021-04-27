@@ -108,11 +108,7 @@ namespace SistemadeCorreoPrivado.Windows
                 Provincia provincia = (Provincia)r.Tag; // saco la provincia lo casteo 
 
                  Provincia provinciaAuxiliar = (Provincia)provincia.Clone();
-                /* PaisEditDto paisEditDto = new PaisEditDto
-                 {
-                     PaisId = pais.PaisId,
-                     NombrePais = pais.NombrePais
-                 };*/
+                
                 FrmProvinciasAE frm = new FrmProvinciasAE();
                 frm.Text = "Editar Provincia";
                 //se lo paso al formulario

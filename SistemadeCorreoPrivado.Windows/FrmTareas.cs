@@ -69,5 +69,108 @@ namespace SistemadeCorreoPrivado.Windows
         {
 
         }
+
+        private void TsbNuevo_Click(object sender, EventArgs e)
+        {
+            FrmTareasAE frm = new FrmTareasAE();
+            frm.Text = "Agregar una Tarea";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    Tarea tarea = frm.GetTarea();
+
+                    if (!_servicio.Existe(tarea))
+                    {
+                        _servicio.Guardar(tarea);
+                        DataGridViewRow r = ConstruirFila();
+                        SetearFila(r, tarea);
+                        AgregarFila(r);
+                        MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void TsbBorrar_Click(object sender, EventArgs e)
+        {
+            if (DgvDatosTareas.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = DgvDatosTareas.SelectedRows[0];
+                Tarea tarea = (Tarea)r.Tag;
+
+                DialogResult dr = MessageBox.Show($@"¿Desea dar de baja el registro seleccionado: {tarea.NombreTarea}?",
+                    @"Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (dr == DialogResult.Yes)
+                {
+
+                    try
+                    {
+                        _servicio.Borrar(tarea.TareaId);
+                        DgvDatosTareas.Rows.Remove(r);
+                        MessageBox.Show(@"Registro Borrado", @"Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void TsbEditar_Click(object sender, EventArgs e)
+        {
+            if (DgvDatosTareas.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = DgvDatosTareas.SelectedRows[0];
+                Tarea tarea = (Tarea)r.Tag;
+                Tarea tareaAuxiliar = (Tarea)tarea.Clone();
+                FrmTareasAE frm = new FrmTareasAE();
+                frm.Text = "Editar Tarea";
+                frm.SetTarea(tarea);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    try
+                    {
+                        tarea = frm.GetTarea();
+
+                        if (!_servicio.Existe(tarea))
+                        {
+                            _servicio.Guardar(tarea);
+
+                            tarea.NombreTarea = tarea.NombreTarea;
+                            SetearFila(r, tarea);
+                            MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            SetearFila(r, tareaAuxiliar);
+                            MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        SetearFila(r, tareaAuxiliar);
+
+                        MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+
     }
 }

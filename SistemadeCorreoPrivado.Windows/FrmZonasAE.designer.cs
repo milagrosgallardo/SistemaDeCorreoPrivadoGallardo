@@ -29,50 +29,60 @@ namespace SistemadeCorreoPrivado.Windows
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmZonasAE));
-            this.txtZonas = new System.Windows.Forms.TextBox();
-            this.LblZonas = new System.Windows.Forms.Label();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
+            this.txtZonas = new System.Windows.Forms.TextBox();
+            this.LblZonas = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtZonas
-            // 
-            this.txtZonas.Location = new System.Drawing.Point(101, 34);
-            this.txtZonas.Name = "txtZonas";
-            this.txtZonas.Size = new System.Drawing.Size(272, 20);
-            this.txtZonas.TabIndex = 5;
-            // 
-            // LblZonas
-            // 
-            this.LblZonas.AutoSize = true;
-            this.LblZonas.Location = new System.Drawing.Point(48, 37);
-            this.LblZonas.Name = "LblZonas";
-            this.LblZonas.Size = new System.Drawing.Size(47, 13);
-            this.LblZonas.TabIndex = 4;
-            this.LblZonas.Text = "ZONAS:";
             // 
             // BtnCancelar
             // 
             this.BtnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.Image")));
-            this.BtnCancelar.Location = new System.Drawing.Point(248, 78);
+            this.BtnCancelar.Location = new System.Drawing.Point(246, 77);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(143, 82);
-            this.BtnCancelar.TabIndex = 7;
+            this.BtnCancelar.TabIndex = 6;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnGuardar
             // 
             this.BtnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("BtnGuardar.Image")));
-            this.BtnGuardar.Location = new System.Drawing.Point(42, 85);
+            this.BtnGuardar.Location = new System.Drawing.Point(41, 77);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(143, 82);
-            this.BtnGuardar.TabIndex = 6;
+            this.BtnGuardar.TabIndex = 5;
             this.BtnGuardar.Text = "Guardar";
             this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnGuardar.UseVisualStyleBackColor = true;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
+            // 
+            // txtZonas
+            // 
+            this.txtZonas.Location = new System.Drawing.Point(100, 26);
+            this.txtZonas.Name = "txtZonas";
+            this.txtZonas.Size = new System.Drawing.Size(272, 20);
+            this.txtZonas.TabIndex = 4;
+            this.txtZonas.Click += new System.EventHandler(this.txtZonas_TextChanged);
+            // 
+            // LblZonas
+            // 
+            this.LblZonas.AutoSize = true;
+            this.LblZonas.Location = new System.Drawing.Point(47, 29);
+            this.LblZonas.Name = "LblZonas";
+            this.LblZonas.Size = new System.Drawing.Size(47, 13);
+            this.LblZonas.TabIndex = 7;
+            this.LblZonas.Text = "ZONAS:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FrmZonasAE
             // 
@@ -87,6 +97,9 @@ namespace SistemadeCorreoPrivado.Windows
             this.Name = "FrmZonasAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmZonasAE";
+            this.Load += new System.EventHandler(this.FrmZonasAE_Load);
+            this.Click += new System.EventHandler(this.FrmZonasAE_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,5 +111,6 @@ namespace SistemadeCorreoPrivado.Windows
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.TextBox txtZonas;
         private System.Windows.Forms.Label LblZonas;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

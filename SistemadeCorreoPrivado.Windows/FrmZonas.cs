@@ -64,5 +64,106 @@ namespace SistemadeCorreoPrivado.Windows
         {
             Close();
         }
+
+        private void TsbNuevo_Click(object sender, EventArgs e)
+        {
+            FrmZonasAE frm = new FrmZonasAE();
+            frm.Text = "Agregar una Zona";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    Zona zona = frm.GetZona();
+
+                    if (!_servicio.Existe(zona))
+                    {
+                        _servicio.Guardar(zona);
+                        DataGridViewRow r = ConstruirFila();
+                        SetearFila(r, zona);
+                        AgregarFila(r);
+                        MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void TsbBorrar_Click(object sender, EventArgs e)
+        {
+            if (DgvDatosZonas.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = DgvDatosZonas.SelectedRows[0];
+                Zona zona= (Zona)r.Tag;
+
+                DialogResult dr = MessageBox.Show($@"¿Desea dar de baja el registro seleccionado: {zona.NombreZona}?",
+                    @"Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (dr == DialogResult.Yes)
+                {
+
+                    try
+                    {
+                        _servicio.Borrar(zona.ZonaId);
+                        DgvDatosZonas.Rows.Remove(r);
+                        MessageBox.Show(@"Registro Borrado", @"Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void TsbEditar_Click(object sender, EventArgs e)
+        {
+            if (DgvDatosZonas.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = DgvDatosZonas.SelectedRows[0];
+                Zona zona = (Zona)r.Tag;
+                Zona zonaAuxiliar = (Zona)zona.Clone();
+                FrmZonasAE frm = new FrmZonasAE();
+                frm.Text = "Editar zona";
+                frm.SetZona(zona);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    try
+                    {
+                        zona = frm.GetZona();
+
+                        if (!_servicio.Existe(zona))
+                        {
+                            _servicio.Guardar(zona);
+
+                            zona.NombreZona = zona.NombreZona;
+                            SetearFila(r, zona);
+                            MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            SetearFila(r, zonaAuxiliar);
+                            MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        SetearFila(r, zonaAuxiliar);
+
+                        MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }

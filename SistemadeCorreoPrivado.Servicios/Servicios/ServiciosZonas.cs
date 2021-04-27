@@ -18,12 +18,34 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
         }
         public void Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioZonas(_conexionBd.AbrirConexion());
+                _repositorio.Borrar(id);
+                _conexionBd.CerrarConexion();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public bool Existe(Zona zonas)
+        public bool Existe(Zona zona)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioZonas(_conexionBd.AbrirConexion());
+                var existe = _repositorio.Existe(zona);
+                _conexionBd.CerrarConexion();
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<Zona> GetZonas()
@@ -48,9 +70,19 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
             throw new NotImplementedException();
         }
 
-        public void Guardar(Zona Zona)
+        public void Guardar(Zona zona)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioZonas(_conexionBd.AbrirConexion());
+                _repositorio.Guardar(zona);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

@@ -29,11 +29,14 @@ namespace SistemadeCorreoPrivado.Windows
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTiposDeDocumentosAE));
             this.txtTiposDeDocumentos = new System.Windows.Forms.TextBox();
             this.LblTiposDeDocumentos = new System.Windows.Forms.Label();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtTiposDeDocumentos
@@ -41,7 +44,8 @@ namespace SistemadeCorreoPrivado.Windows
             this.txtTiposDeDocumentos.Location = new System.Drawing.Point(158, 36);
             this.txtTiposDeDocumentos.Name = "txtTiposDeDocumentos";
             this.txtTiposDeDocumentos.Size = new System.Drawing.Size(248, 20);
-            this.txtTiposDeDocumentos.TabIndex = 5;
+            this.txtTiposDeDocumentos.TabIndex = 0;
+            this.txtTiposDeDocumentos.Click += new System.EventHandler(this.txtTiposDeDocumentos_TextChanged);
             // 
             // LblTiposDeDocumentos
             // 
@@ -58,10 +62,11 @@ namespace SistemadeCorreoPrivado.Windows
             this.BtnCancelar.Location = new System.Drawing.Point(229, 85);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(143, 82);
-            this.BtnCancelar.TabIndex = 7;
+            this.BtnCancelar.TabIndex = 2;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnGuardar
             // 
@@ -69,10 +74,15 @@ namespace SistemadeCorreoPrivado.Windows
             this.BtnGuardar.Location = new System.Drawing.Point(42, 85);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(143, 82);
-            this.BtnGuardar.TabIndex = 6;
+            this.BtnGuardar.TabIndex = 1;
             this.BtnGuardar.Text = "Guardar";
             this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnGuardar.UseVisualStyleBackColor = true;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FrmTiposDeDocumentosAE
             // 
@@ -87,6 +97,9 @@ namespace SistemadeCorreoPrivado.Windows
             this.Name = "FrmTiposDeDocumentosAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmTiposDeDocumentosAE";
+            this.Load += new System.EventHandler(this.FrmTiposDeDocumentosAE_Load);
+            this.Click += new System.EventHandler(this.FrmTiposDeDocumentosAE_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,5 +111,6 @@ namespace SistemadeCorreoPrivado.Windows
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.TextBox txtTiposDeDocumentos;
         private System.Windows.Forms.Label LblTiposDeDocumentos;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

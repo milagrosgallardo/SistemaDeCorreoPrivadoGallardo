@@ -17,12 +17,34 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
         }
         public void Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioModalidades(_conexionBd.AbrirConexion());
+                _repositorio.Borrar(id);
+                _conexionBd.CerrarConexion();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public bool Existe(Modalidad modalidad)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioModalidades(_conexionBd.AbrirConexion());
+                var existe = _repositorio.Existe(modalidad);
+                _conexionBd.CerrarConexion();
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<Modalidad> GetModalidades()
@@ -49,7 +71,17 @@ namespace SistemadeCorreoPrivado.Servicios.Servicios
 
         public void Guardar(Modalidad modalidad)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorio = new RepositorioModalidades(_conexionBd.AbrirConexion());
+                _repositorio.Guardar(modalidad);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

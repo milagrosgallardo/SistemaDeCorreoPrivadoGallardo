@@ -98,6 +98,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.TsbNuevo.Size = new System.Drawing.Size(68, 83);
             this.TsbNuevo.Text = "Nuevo";
             this.TsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbNuevo.Click += new System.EventHandler(this.TsbNuevo_Click);
             // 
             // TsbBorrar
             // 
@@ -108,6 +109,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.TsbBorrar.Size = new System.Drawing.Size(68, 83);
             this.TsbBorrar.Text = "Borrar";
             this.TsbBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbBorrar.Click += new System.EventHandler(this.TsbBorrar_Click);
             // 
             // TsbEditar
             // 
@@ -118,6 +120,7 @@ namespace SistemadeCorreoPrivado.Windows
             this.TsbEditar.Size = new System.Drawing.Size(68, 83);
             this.TsbEditar.Text = "Editar";
             this.TsbEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbEditar.Click += new System.EventHandler(this.TsbEditar_Click);
             // 
             // toolStripSeparator1
             // 

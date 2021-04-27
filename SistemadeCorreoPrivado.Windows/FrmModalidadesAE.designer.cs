@@ -29,50 +29,60 @@ namespace SistemadeCorreoPrivado.Windows
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmModalidadesAE));
-            this.txtModalidades = new System.Windows.Forms.TextBox();
-            this.LblModalidades = new System.Windows.Forms.Label();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
+            this.txtModalidades = new System.Windows.Forms.TextBox();
+            this.LblZonas = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtModalidades
-            // 
-            this.txtModalidades.Location = new System.Drawing.Point(127, 31);
-            this.txtModalidades.Name = "txtModalidades";
-            this.txtModalidades.Size = new System.Drawing.Size(272, 20);
-            this.txtModalidades.TabIndex = 5;
-            // 
-            // LblModalidades
-            // 
-            this.LblModalidades.AutoSize = true;
-            this.LblModalidades.Location = new System.Drawing.Point(33, 34);
-            this.LblModalidades.Name = "LblModalidades";
-            this.LblModalidades.Size = new System.Drawing.Size(88, 13);
-            this.LblModalidades.TabIndex = 4;
-            this.LblModalidades.Text = "MODALIDADES:";
             // 
             // BtnCancelar
             // 
             this.BtnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.Image")));
-            this.BtnCancelar.Location = new System.Drawing.Point(243, 80);
+            this.BtnCancelar.Location = new System.Drawing.Point(247, 77);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(143, 82);
-            this.BtnCancelar.TabIndex = 7;
+            this.BtnCancelar.TabIndex = 10;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnGuardar
             // 
             this.BtnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("BtnGuardar.Image")));
-            this.BtnGuardar.Location = new System.Drawing.Point(56, 80);
+            this.BtnGuardar.Location = new System.Drawing.Point(40, 77);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(143, 82);
-            this.BtnGuardar.TabIndex = 6;
+            this.BtnGuardar.TabIndex = 9;
             this.BtnGuardar.Text = "Guardar";
             this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnGuardar.UseVisualStyleBackColor = true;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
+            // 
+            // txtModalidades
+            // 
+            this.txtModalidades.Location = new System.Drawing.Point(121, 26);
+            this.txtModalidades.Name = "txtModalidades";
+            this.txtModalidades.Size = new System.Drawing.Size(250, 20);
+            this.txtModalidades.TabIndex = 8;
+            this.txtModalidades.Click += new System.EventHandler(this.txtModalidades_TextChanged);
+            // 
+            // LblZonas
+            // 
+            this.LblZonas.AutoSize = true;
+            this.LblZonas.Location = new System.Drawing.Point(46, 29);
+            this.LblZonas.Name = "LblZonas";
+            this.LblZonas.Size = new System.Drawing.Size(74, 13);
+            this.LblZonas.TabIndex = 11;
+            this.LblZonas.Text = "MODALIDAD:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FrmModalidadesAE
             // 
@@ -83,10 +93,13 @@ namespace SistemadeCorreoPrivado.Windows
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnGuardar);
             this.Controls.Add(this.txtModalidades);
-            this.Controls.Add(this.LblModalidades);
+            this.Controls.Add(this.LblZonas);
             this.Name = "FrmModalidadesAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmModalidadesAE";
+            this.Load += new System.EventHandler(this.FrmModalidadesAE_Load);
+            this.Click += new System.EventHandler(this.FrmModalidadesAE_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,6 +110,7 @@ namespace SistemadeCorreoPrivado.Windows
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.TextBox txtModalidades;
-        private System.Windows.Forms.Label LblModalidades;
+        private System.Windows.Forms.Label LblZonas;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
